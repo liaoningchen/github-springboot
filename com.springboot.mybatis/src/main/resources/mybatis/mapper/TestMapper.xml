@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdy.mybatis.dao.TestMapper">
+
+    <resultMap id="BaseResultMap" type="com.cdy.mybatis.dto.Test" >
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="age" property="age" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                `id`,
+                `name`,
+                `age`
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" parameterType="com.cdy.mybatis.dto.Test">
+        INSERT INTO test
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test ='null != id'>
+                `id`,
+            </if>
+            <if test ='null != name'>
+                `name`,
+            </if>
+            <if test ='null != age'>
+                `age`
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test ='null != id'>
+                #{id},
+            </if>
+            <if test ='null != name'>
+                #{name},
+            </if>
+            <if test ='null != age'>
+                #{age}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM test
+        WHERE `id_` = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.cdy.mybatis.dto.Test">
+        UPDATE test
+        <set>
+            <if test ='null != id'>id = #{id},</if>
+            <if test ='null != name'>name = #{name},</if>
+            <if test ='null != age'>age = #{age}</if>
+        </set>
+        WHERE `id_` = #{id}
+    </update>
+
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM test
+        WHERE `id` = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM test
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM test
+    </select>
+
+</mapper>

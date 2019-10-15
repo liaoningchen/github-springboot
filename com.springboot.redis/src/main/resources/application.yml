@@ -1,0 +1,24 @@
+spring:
+  redis:
+    password: 123456
+    jedis:
+      pool:
+        #最大连接数
+        max-active: 100
+        #最大空闲连接数
+        max-idle: 10
+        #最大等待时间
+        max-wait: 100
+        #最小等待时间
+        min-idle: 1
+    sentinel:
+      master: mymaster
+      nodes: 127.0.0.1:26381,127.0.0.1:26380,127.0.0.1:26379
+    database: 6
+
+
+
+
+
+server:
+  port: 8003

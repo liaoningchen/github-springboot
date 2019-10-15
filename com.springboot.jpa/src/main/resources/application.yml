@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+      # 加上 serverTimezone=GMT 是因为 mysql默认是美国时区，而我们大陆时间要比他们晚8个小时，
+      # 解决办法：1把mysql驱动包版本调低（springboot2.0默认mysql驱动包是8.0.17），2、在url连接中拼上serverTimezone=GMT
+    url: jdbc:mysql://127.0.0.1:3306/jpa?serverTimezone=GMT
+
+  jpa:
+    hibernate:
+      # 更新或者创建数据表结构
+      ddl-auto: update
+    #控制台是否显示sql
+    show-sql: true
+
+server:
+  port: 8888
+  

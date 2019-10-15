@@ -1,0 +1,22 @@
+server:
+  port: 1234
+spring:
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 加上 serverTimezone=GMT 是因为 mysql默认是美国时区，而我们大陆时间要比他们晚8个小时，
+    # 解决办法：1把mysql驱动包版本调低（springboot2.0默认mysql驱动包是8.0.17），2、在url连接中拼上serverTimezone=GMT
+    url: jdbc:mysql://127.0.0.1:3306/log?serverTimezone=GMT
+    #springboot1.x时候不需要配置此项，只需把建表语句(schema.sql或者schema-adll.sql)放在类路径下即可
+    #springboot2.x需要配置此项
+    #spring.datasource.initialization-mode  初始化模式（springboot2.0），其中有三个值，always为始终执行初始化，embedded只初始化内存数据库（默认值）,如h2等，never为不执行初始化。
+    initialization-mode: always
+    # 指定建表语句位置(项目必须要引入jdbc包，否则启动项目不会自动执行sql)
+    schema:
+      - classpath:sql/schema-create.sql
+
+
+  profiles:
+    active: sit
