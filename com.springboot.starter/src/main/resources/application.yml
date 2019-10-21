@@ -1,0 +1,6 @@
+com:
+  cdy:
+    name: hello world
+
+server:
+  port: 8888
