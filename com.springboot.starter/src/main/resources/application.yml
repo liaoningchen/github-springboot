@@ -1,6 +1,6 @@
-com:
-  cdy:
-    name: hello world
 
 server:
   port: 8888
+com:
+  cdy:
+    name: 你好
