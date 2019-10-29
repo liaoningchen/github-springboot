@@ -1,1 +1,13 @@
+#url相关配置，这里配置url的基本url
+server:
+  port: 8080
+spring:
+  ## Elasticsearch配置文件（必须）
+  ## 该配置和Elasticsearch本地文件config下的elasticsearch.yml中的配置信息有关
+elasticsearch:
+  cluster:
+    name: my-application
+  host: 127.0.0.1
+  # es对http是9200端口，对java是9300
+  port: 9300
 
